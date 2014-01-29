@@ -2,7 +2,7 @@
   "name": "ez-zero-clipboard",
   "description": "An angular zeroclipboard directive",
   "author": "Joris de Wit",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "dependencies": {
     "angular": "latest",
     "zeroclipboard": "1.3.1"
