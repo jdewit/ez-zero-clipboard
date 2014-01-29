@@ -7,16 +7,19 @@ angular.module('ez.zeroClipboard', [])
 .directive('zeroClipboard', ['ezZeroClipboardConfig', function(ezZeroClipboardConfig) {
   return {
     restrict: 'EA',
-    link: function(scope, element) {
-      var clip = new ZeroClipboard(element, {
-        moviePath: ezZeroClipboardConfig.swfPath
-      });
+    compile: function() {
 
-      clip.on('load', function(client) {
-        client.on('complete', function() {
-          scope.$emit('ez_zeroclipboard_copy');
+      ZeroClipboard.config({moviePath: ezZeroClipboardConfig.swfPath});
+
+      return function(scope, element) {
+        var clip = new ZeroClipboard(element);
+
+        clip.on('load', function(client) {
+          client.on('complete', function() {
+            scope.$emit('ez_zeroclipboard_copy');
+          });
         });
-      });
+      };
     }
   };
 }])
